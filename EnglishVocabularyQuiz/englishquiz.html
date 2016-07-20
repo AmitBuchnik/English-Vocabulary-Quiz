@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>English Vocabulary Quiz</title>
+    <link rel="shortcut icon" sizes="196x196" href="img/Quiz_Icon.jpg"/>
+    <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/englishquiz.css"/>
+    <script type="application/javascript" src="js/jquery.js"></script>
+    <script type="application/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="application/javascript" src="js/math.min.js"></script>
+    <script type="application/javascript" src="js/englishquiz.js"></script>
+</head>
+<body>
+<div class="qBackground"></div>
+<div id="dialog" title="Score"><div id="dialogText"></div></div>
+    <div class="ui-widget-header">
+        <h3 class="titleText">English Vocabulary Quiz</h3>
+    </div>
+    <div class="qContent">
+        <p id="qIntro" class="qIntro firstElementPosition ui-widget-content">
+            Test your skills in English Vocabulary
+        </p>
+
+        <p id="question" class="qIntro firstElementPosition ui-widget-content" style="display: none;">
+        </p>
+
+        <div id="btStart" onclick="Quiz.getQuestions()">Start Now!</div>
+
+        <div id="qusetionsContainer" style="display: none;">
+            <form id="frmAnswers" class="ui-widget-content">
+                <input type="radio" id="ans1" value="1" name="answer"/>
+                <label id="ans1Label" for="ans1"></label>
+                <div class="bottomBorder"></div>
+                <input type="radio" id="ans2" value="2" name="answer"/>
+                <label id="ans2Label" for="ans2"></label>
+                <div class="bottomBorder"></div>
+                <input type="radio" id="ans3" value="3" name="answer"/>
+                <label id="ans3Label" for="ans3"></label>
+                <div class="bottomBorder"></div>
+                <input type="radio" id="ans4" value="4" name="answer"/>
+                <label id="ans4Label" for="ans4"></label>
+            </form>
+
+            <div class="timerContainer">
+                <span id="qTimer" class="ui-widget-content timer  ui-corner-all"></span>
+                <span id="qCounter" class="ui-widget-content counter ui-corner-all"></span>
+            </div>
+
+            <div class="buttons">
+                <div id="btPrevious" onclick="Quiz.previousQuestion()">Previous</div>
+                <div id="btNext" onclick="Quiz.nextQuestion()">Next</div>
+                <div id="btFinish" onclick="Quiz.finish()" style="display: none;">Finish</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

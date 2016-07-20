@@ -1,0 +1,86 @@
+body {
+    font-size: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.qBackground {
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/englishtest.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.titleText {
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.qContent {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    /*border: thin solid black;*/
+}
+
+.firstElementPosition {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.qIntro {
+    font-size: 1.5em;
+    align-self: center;
+    border-radius: 5px;
+    /*border: thin solid rgba(0, 0,0, 0.2);*/
+    padding: 10px 5px 10px 5px;
+}
+
+#btStart {
+    align-self: center;
+}
+
+form {
+    align-self: flex-start;
+    line-height: 2em;
+    border-radius: 5px;
+    border: thin solid rgba(0, 0,0, 0.2);
+}
+
+.bottomBorder {
+    border-bottom: thin solid rgba(0, 0, 0, 0.1);
+}
+
+.timerContainer {
+    display: flex;
+    margin-top: 20px;
+}
+
+.timer {
+    text-align: left;
+    text-shadow: none;
+    letter-spacing: 0.1em;
+    font-style: normal;
+    padding: 5px;
+}
+
+.counter {
+    margin-left: auto;
+    text-shadow: none;
+    letter-spacing: 0.1em;
+    font-style: italic;
+    padding: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+
