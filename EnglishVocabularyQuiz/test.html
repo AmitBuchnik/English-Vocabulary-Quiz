@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="application/javascript" src="js/jquery.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'data.php',
+                dataType: 'json',
+                success: function (data, status, xhr) {
+                    console.log(status);
+                    if(xhr.status == 200) {
+                        if(data.includes('Connection failed') || data.includes('Exception')) {
+                            console.log(data);
+                        }
+                        else {
+                            $('#text').html(data);
+                        }
+                    }
+                    else {
+                        console.log('error: ' + xhr.statusText);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="text"></div>
+</body>
+</html>

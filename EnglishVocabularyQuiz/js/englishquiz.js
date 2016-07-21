@@ -50,7 +50,46 @@ Quiz.index = 0;
 
 Quiz.getQuestions = function () {
     $.ajax({
-        url: './englishQuizData.json',
+        url: './data.php',
+        dataType: 'json',
+        success: function (data, status, xhr) {
+            console.log(status);
+
+            Quiz.index = 0;
+            Quiz.questions.length = 0;
+            Quiz.answers.clear();
+
+            if(xhr.status == 200) {
+                if(data.includes('Connection failed') || data.includes('Exception')) {
+                    console.log(data);
+                }
+                else {
+                    for(let index = 0; index < data.length; index++) {
+                        let q = new Question(data[index].question,
+                            data[index].answer1,
+                            data[index].answer2,
+                            data[index].answer3,
+                            data[index].answer4,
+                            data[index].rightAnswer);
+                        Quiz.questions.push(q);
+                    }
+
+                    $('#qIntro').hide();
+                    $('#question').show();
+                    $('#btStart').hide();
+                    $('#qusetionsContainer').show();
+                    Quiz.questionToScreen();
+                }
+            }
+            else {
+                console.log('error: ' + xhr.statusText);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(status + " " + error);
+        }
+
+        /*url: './englishQuizData.json',
         dataType: 'json',
         success: function (data, status) {
             console.log(status);
@@ -82,7 +121,7 @@ Quiz.getQuestions = function () {
         },
         error: function (xhr, status, error) {
             console.log(status + " " + error);
-        }
+        }*/
     });
 
     let fiveMinutes = 60 * 5, display = $('#qTimer');
