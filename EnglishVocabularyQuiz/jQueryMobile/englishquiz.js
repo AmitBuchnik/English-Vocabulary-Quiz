@@ -2,25 +2,14 @@
  * Created by P0020755 on 18/07/2016.
  */
 
+var Quiz = {};
+
 $(document).ready(function () {
-    $('#btPrevious').button();
-    $('#btNext').button();
-    $('#btFinish').button();
-    $('#btStart').button();
-    $('#dialog').dialog({
-        autoOpen: false,
-        modal: true,
-        width: 280,
-        hegiht: 400,
-        show: {effect: 'fadeIn', duration: 800},
-        buttons: {'Ok': clickOK}
-    });
-
-    function clickOK() {
-        $(this).dialog('close');
-    }
-
-    $('#frmAnswers').mouseover(() => $('#frmAnswers').css('cursor', 'pointer'))
+    $('#btnStart').on('click', Quiz.getQuestions);
+    $('#btNext').on('click', Quiz.nextQuestion);
+    $('#btPrevious').on('click', Quiz.previousQuestion);
+    $('#btFinish').on('click', Quiz.finish);
+    $('#rbAnswers').mouseover(() => $('#rbAnswers').css('cursor', 'pointer'))
 });
 
 class Question {
@@ -42,7 +31,6 @@ class Question {
     }
 }
 
-var Quiz = {};
 Quiz.questions = [];
 Quiz.answers = new Map();
 Quiz.totalQuestions = 10;
@@ -50,7 +38,7 @@ Quiz.index = 0;
 
 Quiz.getQuestions = function () {
     $.ajax({
-        url: './data.php',
+        /*url: 'data.php',
         dataType: 'json',
         success: function (data, status, xhr) {
             console.log(status);
@@ -75,8 +63,7 @@ Quiz.getQuestions = function () {
                     }
 
                     $('#qIntro').hide();
-                    $('#question').show();
-                    $('#btStart').hide();
+                    $('#btnStart').hide();
                     $('#qusetionsContainer').show();
                     Quiz.questionToScreen();
                 }
@@ -87,9 +74,9 @@ Quiz.getQuestions = function () {
         },
         error: function (xhr, status, error) {
             console.log(status + " " + error);
-        }
+        }*/
 
-        /*url: './englishQuizData.json',
+        url: './englishQuizData.json',
         dataType: 'json',
         success: function (data, status) {
             console.log(status);
@@ -114,14 +101,13 @@ Quiz.getQuestions = function () {
             }
 
             $('#qIntro').hide();
-            $('#question').show();
-            $('#btStart').hide();
+            $('#btnStart').hide();
             $('#qusetionsContainer').show();
             Quiz.questionToScreen();
         },
         error: function (xhr, status, error) {
             console.log(status + " " + error);
-        }*/
+        }
     });
 
     let fiveMinutes = 60 * 5, display = $('#qTimer');
@@ -175,12 +161,13 @@ Quiz.startTimer = function (duration, display) {
 };
 
 Quiz.addUserAnswer = function () {
-    let answer = $('input[name=answer]:checked', '#frmAnswers').val();
+    let answer = $('input[name=answer]:checked', '#rbAnswers').val();
     Quiz.answers.set(Quiz.questions[Quiz.index].question, answer);
 };
 
 Quiz.questionToScreen = function () {
-    $('input[name=answer]:checked', '#frmAnswers').removeAttr('checked'); // uncheck all radio for the new question
+    $('input[name=answer]:checked').removeAttr('checked'); // uncheck all radio for the new question
+    $("input[name=answer]").checkboxradio('refresh');
     Quiz.questions[Quiz.index].toScreen();
     $('#qCounter').text((Quiz.index + 1) + " / " + Quiz.totalQuestions);
 
@@ -229,10 +216,9 @@ Quiz.finish = function () {
         }
     });
 
-    //$('#btStart').html('New Quiz').css({ "margin-top": "30px", "margin-bottom": "30px" }).show();
-    $('#btStart').html('New Quiz').addClass('firstElementPosition').show();
+    //$('#qIntro').show();
+    $('#btnStart').html('New Quiz').show();
     $('#qusetionsContainer').hide();
-    $('#question').hide();
-    $('#dialogText').text('Your score is ' + userScore);
-    $("#dialog").dialog('open');
+    $("#score").html(userScore);
+    $("#resultPopup").popup('open');
 };

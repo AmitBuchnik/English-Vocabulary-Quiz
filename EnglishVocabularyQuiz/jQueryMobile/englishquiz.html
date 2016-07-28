@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link rel="shortcut icon" sizes="196x196" href="Quiz_Icon.jpg">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="englishquiz.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="application/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js" type="application/javascript"></script>
+    <script type="application/javascript" src="math.min.js"></script>
+    <script type="application/javascript" src="englishquiz.js"></script>
+    <title>English Quiz</title>
+</head>
+<body>
+<div class="qOpacity"></div>
+<div data-role="page" id="mainPage" class="transparent center">
+    <div data-role="header" data-theme="b">
+        <h1>English Vocabulary Quiz</h1>
+    </div>
+
+    <div data-role="content" class="ui-content">
+        <p id="qIntro" class="ui-content ui-body-b ui-corner-all intro">
+            Test your skills in English Vocabulary
+        </p>
+
+        <button id="btnStart" class="ui-btn ui-btn-inline ui-btn-corner-all">Start Now!</button>
+
+        <div id="qusetionsContainer" class="qContainer" style="display: none">
+            <p class="ui-content ui-body-b ui-corner-all" id="question"></p>
+            <fieldset data-role="controlgroup" data-type="vertical" id="rbAnswers">
+                <input type="radio" id="ans1" value="1" name="answer"/>
+                <label id="ans1Label" for="ans1"></label>
+                <input type="radio" id="ans2" value="2" name="answer"/>
+                <label id="ans2Label" for="ans2"></label>
+                <input type="radio" id="ans3" value="3" name="answer"/>
+                <label id="ans3Label" for="ans3"></label>
+                <input type="radio" id="ans4" value="4" name="answer"/>
+                <label id="ans4Label" for="ans4"></label>
+            </fieldset>
+
+            <div class="timerContainer">
+                <span id="qTimer" class="ui-content timer ui-corner-all"></span>
+                <span id="qCounter" class="ui-content counter ui-corner-all"></span>
+            </div>
+
+            <div class="buttons">
+                <button id="btPrevious" class="ui-btn ui-btn-inline ui-btn-corner-all">Previous</button>
+                <button id="btNext" class="ui-btn ui-btn-inline ui-btn-corner-all">Next</button>
+                <button id="btFinish" style="display: none;" class="ui-btn ui-btn-inline ui-btn-corner-all">Finish</button>
+            </div>
+        </div>
+    </div>
+    <div data-role="popup" id="resultPopup" data-position-to="window" data-overlay-theme="b" data-theme="b"
+         style="min-width: 250px; min-height: 100px">
+        <a href="#" data-rel="back"
+            class="ui-btn ui-btn-b ui-btn-right ui-btn-icon-notext ui-corner-all ui-shadow ui-icon-delete">Close</a>
+        <div data-role="header">
+            <h1>Score</h1>
+        </div>
+        <div data-role="main">
+            <p>Your score is:</p>
+            <p id="score"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
